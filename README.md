@@ -16,10 +16,10 @@
 
 # Environmental Variables to set in root directory
 
-PORT =
-DATABASE_URL =
-JWT_SECRET =
-NODE_ENV =
+- PORT =
+- DATABASE_URL =
+- JWT_SECRET =
+- NODE_ENV =
 
 # And in client directory
 
