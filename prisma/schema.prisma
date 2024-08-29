@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(uuid()) @map("_id")
+  username  String     @unique
+  password  String
+  createdAt DateTime   @default(now())
+  playlists Playlist[]
+}
+
+model Playlist {
+  id          String   @id @default(uuid()) @map("_id")
+  isPublic    Boolean  @default(true)
+  name        String
+  description String
+  creator     User     @relation(fields: [creatorId], references: [id])
+  creatorId   String
+  createdAt   DateTime @default(now())
+  songs       Song[]   @relation(fields: [songIds], references: [id])
+  songIds     String[]
+}
+
+model Song {
+  id           String     @id @default(uuid()) @map("_id")
+  title        String
+  author       String
+  songSrc      String
+  coverSrc     String
+  uploadedAt   DateTime   @default(now())
+  duration     Int
+  playlists    Playlist[] @relation(fields: [playlistsIds], references: [id])
+  playlistsIds String[]
+}

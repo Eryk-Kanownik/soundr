@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gradient-to-b from-slate-950 to-slate-700 overflow-hidden;
+  min-height: 100dvh;
+}
+
+.notification-visible {
+  @apply translate-y-0 opacity-100;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: gray; /* background */
+  height: 0.3rem;
+  @apply rounded-md;
+}
+input[type="range"]::-moz-range-track {
+  background: #93a9b8;
+  height: 0.5rem;
+}
+input[type="range"]::-moz-range-thumb {
+  border: none; /* ball */
+  border-radius: 0;
+  background-color: red;
+  height: 2rem;
+  width: 1rem;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 10px;
+  width: 10px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  @apply rounded-full shadow-md shadow-slate-600;
+  transform: translateY(-25%);
+}
+@layer components {
+  .input-text {
+    @apply rounded-md px-2 py-1 bg-slate-800 text-white shadow-md;
+  }
+  .button-default {
+    @apply bg-slate-500/10 hover:bg-slate-500/100 duration-200 rounded-md shadow-md px-4 py-2 font-semibold disabled:bg-slate-500/10 disabled:text-slate-400 disabled:hover:bg-slate-500/10 text-white;
+  }
+}
